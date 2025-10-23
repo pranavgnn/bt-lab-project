@@ -1,36 +1,39 @@
-# Agent: Spring Documentation MCP Integration
+# Agent Behavior Enforcement Policy
 
-## Role
-This agent is configured to use the **Spring Documentation MCP Server** (`@enokdev/springdocs-mcp`) as a connected tool.  
-It does not generate information on its own; instead, it queries the MCP server to retrieve official Spring Framework documentation, tutorials, guides, version data, and troubleshooting information.
+## Core Rule
+The agent is **strictly prohibited** from creating or saving any files unless the user provides an explicit and direct command to do so. Additionally, when generating code, the agent must **write self-documenting code**, **avoid comments**, and ensure the code is **clean, legible, and modular**.
 
-## Connected MCP Server
-**Name:** `spring-docs`  
-**Command:** `npx @enokdev/springdocs-mcp@latest`  
-**Compatibility:** Universal MCP (Claude Code, Gemini CLI, VS Code, JetBrains IDEs, etc.)
+## Forbidden Actions
+The agent must **never**:
+- Create, write, or save any of the following file types unless explicitly instructed:
+  - `.md` (Markdown files)
+  - `.sh` (Shell scripts)
+  - `.bat` (Batch files)
+  - `.ps1` (PowerShell scripts)
+- Autogenerate or assume the need for documentation or code files.
+- Produce any files as part of “helpful” or “automatic” behavior.
+- Add comments to code; all code must be self-explanatory and modular.
 
-## Available Tools
-### Core Tools
-- `search_spring_docs`: Search across official Spring documentation.
-- `search_spring_projects`: Find and summarize official Spring projects.
-- `get_spring_project`: Retrieve detailed project information.
-- `get_all_spring_guides`: List all official Spring guides.
-- `get_spring_guide`: Retrieve the full content of a specific guide.
-- `get_spring_reference`: Fetch sections from reference documentation.
-- `search_spring_concepts`: Explore and explain Spring concepts.
+## Conditional Permissions
+File creation is permitted **only** when:
+1. The user gives an explicit directive (e.g., “create a file named setup.sh”).
+2. The file type, name, and content purpose are clearly specified by the user.
 
-### Advanced Tools
-- `search_spring_ecosystem`: Search the broader Spring ecosystem (projects, APIs, docs).
-- `get_spring_tutorial`: Retrieve structured tutorials by level or topic.
-- `compare_spring_versions`: Compare and analyze differences between Spring versions.
-- `get_spring_best_practices`: Retrieve best practices by domain.
-- `diagnose_spring_issues`: Analyze and propose solutions to common Spring Boot issues.
+## Example of Allowed Behavior
+- User says: “Create a README.md describing the API.”  
+  → Allowed.  
+- User says: “Show me a PowerShell script to automate backups.”  
+  → Allowed, but must output the script as text only (not as a `.ps1` file) unless the user requests a saved file.  
+- User requests code output → Must write **self-documenting, clean, legible, and modular code** without comments.
 
-## Usage
-When the agent receives a task related to the Spring Framework, it should:
-1. Determine which MCP tool best fits the request.
-2. Invoke that tool with the appropriate parameters (e.g., `query`, `limit`, or version data).
-3. Return the structured output directly or summarize it if multiple results are retrieved.
+## Example of Disallowed Behavior
+- Automatically creating `README.md`, `run.sh`, `start.bat`, or `script.ps1` files.  
+- Generating Markdown documentation without user instruction.  
+- Saving or exporting any file not explicitly requested.  
+- Adding comments to code unnecessarily or writing monolithic, unreadable code.
 
-## Objective
-Provide accurate and up-to-date information from official Spring sources by leveraging the Spring Documentation MCP server as the authoritative backend.
+## Enforcement Summary
+If no explicit instruction to create a file is detected:
+- Do not create, write, or save any file of any format.  
+- Respond only with text or inline examples in the chat.  
+- All code must remain **self-documenting, clean, legible, and modular** without added comments.
