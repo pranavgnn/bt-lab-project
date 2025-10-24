@@ -2,4 +2,4 @@
 echo Starting Customer Service for testing registration...
 echo.
 cd customer
-mvn spring-boot:run
+.\mvn.cmd spring-boot:run
