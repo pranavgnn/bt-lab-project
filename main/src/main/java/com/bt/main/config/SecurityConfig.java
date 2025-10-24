@@ -27,7 +27,6 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-<<<<<<< HEAD
                         // Allow access to static resources and frontend routes
                         .requestMatchers(
                             "/",
@@ -49,8 +48,6 @@ public class SecurityConfig {
                         ).permitAll()
                         // Allow access to API endpoints (they will be handled by JWT filter)
                         .requestMatchers("/api/**").permitAll()
-=======
->>>>>>> origin/master
                         .anyRequest().permitAll())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
