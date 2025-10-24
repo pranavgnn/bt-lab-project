@@ -11,6 +11,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+<<<<<<< HEAD
   server: {
     proxy: {
       '/api': {
@@ -23,3 +24,6 @@ export default defineConfig({
     outDir: '../src/main/resources/static', 
   }
 })  
+=======
+})
+>>>>>>> origin/master

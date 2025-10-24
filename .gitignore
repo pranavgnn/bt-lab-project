@@ -1,6 +1,10 @@
 HELP.md
 target/
+<<<<<<< HEAD
 !.mvn/wrapper/maven-wrapper.jar
+=======
+.mvn/wrapper/maven-wrapper.jar
+>>>>>>> origin/master
 !**/src/main/**/target/
 !**/src/test/**/target/
 
@@ -29,6 +33,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -53,3 +58,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+=======
+### VS Code ###
+.vscode/
+node_modules
+>>>>>>> origin/master
