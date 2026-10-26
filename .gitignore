@@ -1,0 +1,22 @@
+# Build outputs & temporary files
+launch_debug.log
+err.txt
+out.txt
+*.tmp
+*.TMP
+__pycache__/
+scratch/
+mochiiwuff_repo/
+
+# Large media files & artifacts
+WhatsApp*
+*.mp4
+ASMR*.mp3
+test_*.wav
+Capri-Desktop-*.zip
+
+# Visual Studio / VS Code
+.vs/
+.vscode/
+bin/
+obj/
